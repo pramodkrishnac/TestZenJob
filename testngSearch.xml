@@ -1,0 +1,13 @@
+<suite name = "TS_Search_001 Verify Search Functionality">
+	<test name = "TC_Search_Travel_001">
+		<groups>
+			<run>
+				<include name = "Smoke Testing"/>
+			</run>
+		</groups>
+		<parameter name = "browserType" value = "Firefox"/>
+		<classes>
+			<class name = "search.TravelSearch"/>
+		</classes>
+	</test>
+</suite>

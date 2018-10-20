@@ -1,0 +1,13 @@
+<suite name = "TS_Check_001 Verify User Registration">
+	<test name = "TC_Check_Register_001 to TC_Check_Register_004">
+		<groups>
+			<run>
+				<include name = "Smoke Testing"/>
+			</run>
+		</groups>
+		<parameter name = "browserType" value = "Firefox"/>
+		<classes>
+			<class name = "register.RegisterUser"/>
+		</classes>
+	</test>
+</suite>
