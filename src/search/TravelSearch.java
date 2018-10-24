@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
@@ -14,6 +15,7 @@ import org.testng.annotations.Test;
 
 import pageobjects.Check24;
 import pageobjects.TravelPage;
+import pageobjects.TravelSearchResult;
 import utility.UtilFunctions;
 
 public class TravelSearch {
@@ -54,8 +56,11 @@ public class TravelSearch {
 		 
 		 TravelPage.travelSearch(driver).click();
 		 
+		 //Check if atleast 1 search result is displayed
+		 Assert.assertTrue(TravelSearchResult.searchList(driver).isDisplayed()); 
+		 
 		 //Call utility function to close the browser
-		 //util._closeBrowser(driver); 
+		 util._closeBrowser(driver); 
 	 }
 	  @BeforeClass
 	  public void beforeClass() {
