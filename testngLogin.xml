@@ -1,4 +1,4 @@
-<suite name = "TS_Check_002 Verify Login Functionality">
+<suite name = "TS_Verify_Login_Functionality">
 	<test name = "TC_Check_Login_001 to TC_Check_Login_004">
 		<groups>
 			<run>

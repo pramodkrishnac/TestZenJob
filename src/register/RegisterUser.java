@@ -2,7 +2,9 @@ package register;
 
 import java.net.MalformedURLException;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
@@ -30,7 +32,7 @@ public class RegisterUser {
 		 String password = "user"+randomNumber1;
 		 
 		 //The test will run 4 times with 1 Success and 3 Failure cases
-		 return new Object[][] { { email, password },{"user1234","user1234"},{"user1234@example.com","user"},{email,password}};
+		 return new Object[][] { { email, password,"OK" },{"user1234","user1234","NOK"},{"user1234@example.com","user","NOK"},{email,password,"NOK"}};
 	}
 	 
 	 @Test(priority = 0,groups= {"Smoke Testing"})
@@ -42,9 +44,20 @@ public class RegisterUser {
 	  }
 	 
 	 @Test(priority = 1, dependsOnMethods = {"selectBrowser"}, groups= {"Smoke Testing"},dataProvider = "Datainput")
-	 public void userRegistration(String sEmail, String sPassword) {
+	 public void userRegistration(String sEmail, String sPassword, String Status) throws InterruptedException {
 		 //call utility function to open the url
-		 util._openBrowser(driver);
+		 util._openBrowser(driver); 
+		 Thread.sleep(10000);
+		 try
+		 {
+			 driver.findElement(By.xpath("//a[@class='c24-cookie-button']")).click();
+			 System.out.println("handled accept cookies notification");
+		 }
+		 catch (Exception E1)
+		 {
+			 System.out.println(E1);
+		 }
+		 
 		 
 		 //Navigate to registration page
 		 Check24.register(driver).click();
@@ -55,6 +68,16 @@ public class RegisterUser {
 		 RegisterPage.password(driver).sendKeys(sPassword);
 		 RegisterPage.passwordRepetition(driver).sendKeys(sPassword);
 		 RegisterPage.register(driver).click();
+		 Thread.sleep(5000);
+		 
+		 if(Status=="OK")
+		 {
+			 WebElement element = driver.findElement(By.xpath("//*[@id='c24-meinkonto-anmelden']"));
+			 String sTxt = element.getText();
+			 System.out.println(sTxt);
+			 driver.findElement(By.xpath("//div[@class='c24-customer-check']//a")).click();
+			 System.out.println("Signed out");
+		 }
 		 
 		 //Call utility function to close the browser
 		 util._closeBrowser(driver); 

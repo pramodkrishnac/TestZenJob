@@ -2,7 +2,10 @@ package login;
 
 import java.net.MalformedURLException;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
@@ -35,7 +38,7 @@ public class LoginUser {
 	  }
 	 
 	 @Test(priority = 1, dependsOnMethods = {"selectBrowser"}, groups= {"Smoke Testing"},dataProvider = "Credentials")
-	 public void userLogin(String sEmail, String sPassword) {
+	 public void userLogin(String sEmail, String sPassword){
 		 //Call the utility function to open the url
 		 util._openBrowser(driver);
 		 
@@ -61,12 +64,12 @@ public class LoginUser {
 
 	  @BeforeSuite
 	  public void beforeSuite() {
-		  Reporter.log("-------- Start of Test Scenario 2: TS_Check_002 -----------");
+		  Reporter.log("-------- Start of Test Scenario 2: TS_Check_2 -----------");
 	  }
 
 	  @AfterSuite
 	  public void afterSuite() {
-		  Reporter.log("--------- End of Test Scenario 2: TS_Check_002 ------------");
+		  Reporter.log("--------- End of Test Scenario 2: TS_Check_2 ------------");
 	  }
 
 

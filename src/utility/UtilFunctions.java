@@ -3,7 +3,9 @@ package utility;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -14,7 +16,7 @@ public class UtilFunctions {
 			public WebDriver selectBrowser(String browserType) {
 				if(browserType.equals("Firefox")) {
 					  //Set the system property to point to gecko driver
-					  System.setProperty("webdriver.gecko.driver", "/Users/ish/eclipse-workspace/Check24/lib/SeleniumDrivers/geckodriver");	
+					  System.setProperty("webdriver.gecko.driver", "C:\\mozilladriver\\geckodriver.exe");	
 					  
 					  //Create a new instance of the Firefox driver
 					  WebDriver driver = new FirefoxDriver();
@@ -48,5 +50,6 @@ public class UtilFunctions {
 				  int randomNum = rand.nextInt(100000);
 				  return randomNum;
 		    }
+			
 
 }

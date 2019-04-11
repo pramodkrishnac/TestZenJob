@@ -20,7 +20,7 @@ public class RegisterPage {
 		return element;
 	}
 	public static WebElement register(WebDriver driver){
-		element = driver.findElement(By.id("c24-kb-btn"));
+		element = driver.findElement(By.name("register"));
 		return element;
 	}
 

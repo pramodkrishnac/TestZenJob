@@ -20,21 +20,6 @@ public class Check24 {
 		element = driver.findElement(By.className("c24-nav-button"));
 		return element;
 	}
-	
-	public static WebElement travel(WebDriver driver){
-		List<WebElement> elements = driver.findElements(By.className("c24-mainnav-ele-title"));
-		for (WebElement we : elements) {
-		    if (we.getAttribute("title") != null) {
-		            if (we.getAttribute("title").equals("Reise & Flug")) {
-		            	    element = we;
-		                    break;
-		            }
-		    }
-
-		}
-		return element;
-				
-	}
-	
+		
 
 }

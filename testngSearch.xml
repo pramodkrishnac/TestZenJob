@@ -1,4 +1,4 @@
-<suite name = "TS_Search_001 Verify Search Functionality">
+<suite name = "TS_Verify_Search_Functionality">
 	<test name = "TC_Search_Travel_001">
 		<groups>
 			<run>
@@ -7,7 +7,7 @@
 		</groups>
 		<parameter name = "browserType" value = "Firefox"/>
 		<classes>
-			<class name = "search.TravelSearch"/>
+			<class name = "search.SearchItem"/>
 		</classes>
 	</test>
 </suite>
