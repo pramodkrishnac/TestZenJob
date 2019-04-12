@@ -5,6 +5,8 @@ import java.net.MalformedURLException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
@@ -45,9 +47,10 @@ public class RegisterUser {
 	 
 	 @Test(priority = 1, dependsOnMethods = {"selectBrowser"}, groups= {"Smoke Testing"},dataProvider = "Datainput")
 	 public void userRegistration(String sEmail, String sPassword, String Status) throws InterruptedException {
+		 driver = util.selectBrowser("Firefox");
 		 //call utility function to open the url
 		 util._openBrowser(driver); 
-		 Thread.sleep(10000);
+		 Thread.sleep(5000);
 		 try
 		 {
 			 driver.findElement(By.xpath("//a[@class='c24-cookie-button']")).click();
@@ -72,12 +75,18 @@ public class RegisterUser {
 		 
 		 if(Status=="OK")
 		 {
-			 WebElement element = driver.findElement(By.xpath("//*[@id='c24-meinkonto-anmelden']"));
+			 WebElement element = driver.findElement(By.xpath("//div[@class='page-header-inner']//h1"));
 			 String sTxt = element.getText();
 			 System.out.println(sTxt);
-			 driver.findElement(By.xpath("//div[@class='c24-customer-check']//a")).click();
-			 System.out.println("Signed out");
+			 Assert.assertTrue(sTxt.contains("Hallo"),"Registration successfull!");
+			 WebElement element1 = driver.findElement(By.xpath("//span[@class='c24-customer-hover c24-header-hover']"));
+			 Actions actionelement = new Actions(driver);		 
+		     actionelement.moveToElement(element1).build().perform(); 
+		     Thread.sleep(5000);
+		     driver.findElement(By.xpath("//a[@title='Abmelden']")).click();
+		     Thread.sleep(5000);
 		 }
+		 
 		 
 		 //Call utility function to close the browser
 		 util._closeBrowser(driver); 
@@ -99,6 +108,8 @@ public class RegisterUser {
 
 	  @AfterSuite
 	  public void afterSuite() {
+		  if(driver != null)
+		        driver.quit();
 		  Reporter.log("--------- End of Test Scenario 1: TS_Check_001 ------------");
 	  }
 
